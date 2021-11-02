@@ -4,31 +4,21 @@ fun main() {
     val isBlessed = true
     val isImmortal = false
 
+    val karma = (Math.pow(Math.random(), (110 - healthPoints) / 100.0) * 20).toInt()
     val auraVisible = isBlessed && healthPoints > 50 || isImmortal
-    /*if (auraVisible) {
-        println("GREEN")
+    val auraColor = if (auraVisible) {
+        when(karma){
+            in 0..5 -> "red"
+            in 6..10 -> "orange"
+            in 11..15 -> "purple"
+            in 16..20 -> "green"
+            else -> "NONE"
+        }
     } else {
-        println("NONE")
-    }*/
-    val auraColor = if (auraVisible) "GREEN" else "NONE"
-    //println(auraColor)
+        "NONE"
+    }
     println("(Aura: $auraColor) " + "(Blesses: ${if (isBlessed) "YES" else "NO"})")
 
-    /*val healthStatus = if (healthPoints == 100) {
-        "is in excellent condition!"
-    } else if (healthPoints in 90..99) {
-        "has a few scratches."
-    } else if (healthPoints in 75..89) {
-        if (isBlessed) {
-            "has some minor wounds but is healing quite quickly!"
-        } else {
-            "has some minor wounds."
-        }
-    } else if (healthPoints in 15..74) {
-        "look pretty hurt."
-    } else {
-        "is in awful condition!"
-    }*/
     val healthStatus = when (healthPoints) {
         100 -> "is in excellent condition"
         in 90..99 -> "has a few scratches."
@@ -41,7 +31,6 @@ fun main() {
         else -> "is in awful condition!"
     }
 
-    //println(name + " " + healthStatus)
     println("$name $healthStatus")
 
     val race = "gnome"
